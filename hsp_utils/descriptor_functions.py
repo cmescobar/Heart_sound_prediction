@@ -1,6 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from math_functions import hamming_window, hann_window, wiener_filter
+from hsp_utils.math_functions import hamming_window, hann_window
 from scipy.signal.windows import tukey, nuttall
 
 

@@ -191,7 +191,19 @@ def SNR(signal_in, signal_denoised, snr_type='db'):
 
 
 def moving_average(signal_in, Lf):
-    '''
+    '''Función que permite hacer una media móvil de una señal.
+    
+    Parameters
+    ----------
+    signal_in : ndarray or list
+        Señal de entrada.
+    Lf : int
+        Largo de la ventana a considerar.
+        
+    Returns
+    -------
+    result : ndarray
+        Señal de salida.
     '''
     # Definición de N
     N = len(signal_in)
@@ -333,19 +345,6 @@ def db_attenuation(signal_in, db):
         Señal atenuada en db dB.
     '''
     return signal_in * db_coef(-db)
-
-
-def _db_relation(signal_1, signal_2, db_rel_desired):
-    # Definición de la relación de energía entre señales
-    energy_ratio = sum(abs(signal_1) ** 2) / sum(abs(signal_2) ** 2)
-    
-    # Normalizando la señal 1 en relación a la energía de la señal 2
-    signal_1_norm = signal_1 / np.sqrt(energy_ratio)
-    
-    # Para que quede con los decibeles deseados
-    signal_1_db_des = db_attenuation(signal_1_norm, -db_rel_desired)
-    
-    return signal_1_db_des + signal_2
     
 
 def _correlation(a, b):
