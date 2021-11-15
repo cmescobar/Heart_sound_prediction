@@ -2,12 +2,12 @@ import os
 import numpy as np
 import soundfile as sf
 import matplotlib.pyplot as plt
-from scipy.io import wavfile
+from scipy.io import wavfile, loadmat
 from scipy.interpolate import interp1d
 from hsp_utils.evaluation_functions import eval_sound_model, class_representations
 
 
-def find_and_open_audio(db_folder):
+def find_and_open_audio(db_folder, true_value=False):
     '''Función que permite la apertura de archivos de audio en la base
     de datos de la carpeta especificada.
     
@@ -15,6 +15,9 @@ def find_and_open_audio(db_folder):
     ----------
     db_folder : str
         Carpeta de la base de datos.
+    true_value : bool, optional
+        Booleano que indica si es que se retorna la etiqueta original
+        del archivo de audio (en formato .mat). Por defecto es False.
         
     Returns
     -------
@@ -55,7 +58,11 @@ def find_and_open_audio(db_folder):
     filename = f'{db_folder}/{_file_selection(filenames)}'
     
     # Retornando
-    return _open_file(filename)
+    if not true_value:
+        return _open_file(filename)
+    else:
+        return _open_file(filename), \
+                loadmat(f'{filename}.mat')['PCG_states']
     
 
 def hss_segmentation(signal_in, samplerate, model_name,
@@ -88,6 +95,10 @@ def hss_segmentation(signal_in, samplerate, model_name,
     y_hat : ndarray
         Salidas de la red indicando la probabilidad de ocurrencia 
         de cada clase.
+    y_hat_to : ndarray
+        Salidas de la red indicando la probabilidad de ocurrencia 
+        de cada clase, pero con la corrección de la cantidad de 
+        puntos.
     (y_out2, y_out3, y_out4) : list of ndarray
         Salida de la red indicando las 2, 3 y 4 posibles clases.
     '''

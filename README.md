@@ -42,10 +42,11 @@ Las carpetas que componen este proyecto son:
 
 * `hsp_utils`: Contiene funciones que permiten operar las funciones principales de segmentación.
 * `imgs`: Carpeta con imágenes que se incluyen en este `README`.
-*  `jupyter_test`: Contiene el archivo `testing_notebook.ipynb` que permite realizar experimentos del modelo entrenado sobre los archivos disponibles en la carpeta `samples_test`.
+* `jupyter_test`: Contiene el archivo `testing_notebook.ipynb` que permite realizar experimentos del modelo entrenado sobre los archivos disponibles en la carpeta `samples_test`.
 * `models`: Contiene el modelo final entrenado en formato `.h5`.
 * `samples_test`: Contiene una pequeña muestra de la base de datos presentada en la [sección 2](#2-base-de-datos).
-* `training_scripts`: Contiene algunos de los archivos utilizados para el entrenamiento de las redes. Sin embargo, no se asegura el correcto funcionamiento de estos archivos. Se incluyen simplemente para tener una noción de cómo se implementó este proyecto. Para más detalles se recomienda revisar en el repositorio [`Scripts_magister`](https://github.com/cmescobar/Scripts_Magister) la carpeta [`Heart_sound_segmentation_v2`](https://github.com/cmescobar/Scripts_Magister/tree/master/Heart_sound_segmentation_v2) para ver el historial de cambios sobre este experimento (:warning:**Se advierte de manera previa que esa carpeta corresponde a una etapa experimental/borrador del trabajo realizado, y por ende, no se encuentra ordenada ni es apta para utilizar directamente los códigos. En caso de estar interesado en más detalle aún, se sugiere contactar a mi correo personal.**:warning:).
+* `training_scripts`: Contiene algunos de los archivos utilizados para el entrenamiento de las redes. Sin embargo, no se asegura el correcto funcionamiento de estos archivos. Se incluyen simplemente para tener una noción de cómo se implementó este proyecto. Para más detalles se recomienda revisar en el repositorio [`Scripts_magister`](https://github.com/cmescobar/Scripts_Magister) la carpeta [`Heart_sound_segmentation_v2`](https://github.com/cmescobar/Scripts_Magister/tree/master/Heart_sound_segmentation_v2) para ver el historial de cambios sobre este experimento (:warning:**Se advierte de manera previa que esa carpeta corresponde a una etapa experimental/borrador del trabajo realizado, y por ende, no se encuentra ordenada ni es apta para utilizar directamente los códigos. En caso de estar interesado en más detalle aún, se sugiere contactar a mi correo personal.**:warning:)
+* `main.py`: Archivo que contiene un ejemplo de ejecución para la función que realiza la predicción de los instantes de ocurrencia de los sonidos cardiacos.
 * `prediction_functions.py`: Archivo que contiene las funciones que permiten aplicar la predicción de las posiciones de los sonidos cardiacos utilizando la red CNN con arquitectura *encoder-decoder*.
 
 ## 4. Bibliotecas requeridas
@@ -62,7 +63,32 @@ Para el desarrollo de estos módulos se utilizó la siguiente lista de bibliotec
 
 ## 5. Ejemplo de prueba
 
-Revisar mientras tanto: `jupyter_test/testing_notebook.ipynb`
+Un ejemplo de prueba se deja a disposición en el *notebook* de la dirección `jupyter_test/testing_notebook.ipynb`, el cual contiene una ejecución guiada de la función de predicción.
 
-Línea de código: (Por completar)
+Se deja a continuación un código similar al disponible en el archivo `main.py`.
+
+```python
+import numpy as np
+import soundfile as sf
+import matplotlib.pyplot as plt
+from scipy.io import loadmat
+from prediction_functions import hss_segmentation
+
+# Parámetros
+lowpass_params = {'freq_pass': 140, 'freq_stop': 150}
+model_name = 'definitive_segnet_based'
+db_folder = 'samples_test'
+
+# Abriendo audio de ejemplo
+filename = 'samples_test/435_Patient081_Dis1'
+audio, samplerate = sf.read(f'{filename}.wav')
+labels = loadmat(f'{filename}.mat')['PCG_states']
+
+# Obteniendo la salida de la red
+_, y_hat_to, (y_out2, y_out3, y_out4) = \
+        hss_segmentation(audio, samplerate, model_name,
+        length_desired=len(audio),
+        lowpass_params=lowpass_params,
+        plot_outputs=False)
+```
 
