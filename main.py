@@ -5,7 +5,7 @@ from scipy.io import loadmat
 from prediction_functions import hss_segmentation
 
 
-# Módulo de testeo de repositorio
+# Módulo de testeo de repositorio #
 if __name__ == '__main__':
     # Parámetros
     lowpass_params = {'freq_pass': 140, 'freq_stop': 150}
