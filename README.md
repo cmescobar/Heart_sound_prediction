@@ -19,7 +19,7 @@ En este trabajo, se utilizan redes neuronales convolucionales (CNN) para detecta
 	<figcaption align = "center"><b>Figura 1: Encoder-Decoder CNN basado en SegNet.</b></figcaption>
 </figure>
 
-A partir de los resultados de este estudio se define la arquitectura disponible en la carpeta `models` para abordar el problema de la segmentación de los sonidos cardiacos (para más detalle sobre las conclusiones de este trabajo, se recomienda revisa el capítulo 2 de la tesis "[*Design of a preprocessing system for sounds obtained from chest auscultation*](https://repositorio.uc.cl/handle/11534/60994)").
+A partir de los resultados de este estudio se define la arquitectura disponible en la carpeta `models` para abordar el problema de la segmentación de los sonidos cardiacos (para más detalle sobre las conclusiones de este trabajo, se recomienda revisar el capítulo 2 de la tesis "[*Design of a preprocessing system for sounds obtained from chest auscultation*](https://repositorio.uc.cl/handle/11534/60994)").
 
 ## 2. Base de datos
 
