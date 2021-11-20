@@ -52,9 +52,10 @@ if __name__ == '__main__':
     axs[2].set_ylim([0.7, 4.3])
     axs[2].legend(loc='lower right')
 
+    # Alineando los labels del eje y
     fig.align_ylabels(axs[:])
 
-    # Remover espacio horizontal entre plots
+    # Remover espacio horizontal entre plot_outputs
     fig.subplots_adjust(wspace=0.1, hspace=0)
 
     plt.show()

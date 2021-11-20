@@ -25,7 +25,7 @@ A partir de los resultados de este estudio se define la arquitectura disponible 
 
 Para el entrenamiento de este sistema, se utilizó una base de datos de sonidos cardiacos disponible en la implementación de Springer titulada "[Logistic Regression-HSMM-based Heart Sound Segmentation](https://physionet.org/content/hss/1.0/)", la cual fue presentada para la etapa de segmentación de sonidos cardiacos en el contexto del desafío PhysioNet/CinC del año 2016. 
 
-Esta base de datos cuenta con 792 registros de audio de obtenidos a partir de 135 pacientes distintos, los cuales son auscultados en distintas posiciones del pecho. Cada uno de estos archivos de audio se encuentra muestreado a 1000 Hz, y posee etiquetas muestreadas a 50 Hz que indican 4 posibles estados: S1, sístole, S2 y diástole. Estas etiquetas son definidas con el *peak*-R y el final de la onda T de un ECG sincronizado con el estetoscopio con el que se grabaron los sonidos cardiacos. Sin embargo, ninguna de las etiquetas proporcionadas poseen corrección humana.
+Esta base de datos cuenta con 792 registros de audio de obtenidos a partir de 135 pacientes distintos, los cuales son auscultados en distintas posiciones del pecho. Cada uno de estos archivos de audio se encuentra muestreado a 1000 Hz, y posee etiquetas muestreadas a 50 Hz que indican 4 posibles estados: S1, sístole, S2 y diástole. Estas etiquetas son definidas con el *peak*-R y el final de la onda T de un electrocardiograma (ECG) sincronizado con el estetoscopio con el que se grabaron los sonidos cardiacos. Sin embargo, ninguna de las etiquetas proporcionadas poseen corrección humana.
 
 En la figura 2 es posible apreciar un ejemplo de un sonido cardiaco en conjunto con sus etiquetas.
 
