@@ -15,21 +15,21 @@ In this work, CNNs are used to detect the presence of fundamental heart sounds. 
 
 <figure>
 	<div style="text-align:center">
-		<img src="imgs/CNN_architectures-SegNet_SPA.png" width="100%">
+		<img src="imgs/CNN_architectures-SegNet_ENG.png" width="100%">
     </div>
 	<figcaption align = "center"><b>Figure 1: Semantic Segmentation CNN.</b></figcaption>
 </figure>
 
-Based on the results of this study, the architecture available in the `models` folder is defined to address the problem of heart sound segmentation (for more details on the findings of this work, please refer to chapter 2 of the thesis "[*Design of a preprocessing system for sounds obtained from chest auscultation*](https://repositorio.uc.cl/handle/11534/60994)".
+<br/>Based on the results of this study, the architecture available in the `models` folder is defined to address the problem of heart sound segmentation (for more details on the findings of this work, please refer to chapter 2 of the thesis "[*Design of a preprocessing system for sounds obtained from chest auscultation*](https://repositorio.uc.cl/handle/11534/60994)".
 
 
 ## 2. Database
 
-Para el entrenamiento de este sistema, se utilizó una base de datos de sonidos cardiacos disponible en la implementación de Springer titulada "[Logistic Regression-HSMM-based Heart Sound Segmentation](https://physionet.org/content/hss/1.0/)", la cual fue presentada para la etapa de segmentación de sonidos cardiacos en el contexto del desafío PhysioNet/CinC del año 2016. 
+For training this system, we used a dataset of heart sounds available in the Springer implementation titled "[Logistic Regression-HSMM-based Heart Sound Segmentation](https://physionet.org/content/hss/1.0/)", presented for the heart sound segmentation stage in the context of the 2016 PhysioNet/CinC challenge. 
 
-Esta base de datos cuenta con 792 registros de audio de obtenidos a partir de 135 pacientes distintos, los cuales son auscultados en distintas posiciones del pecho. Cada uno de estos archivos de audio se encuentra muestreado a 1000 Hz, y posee etiquetas muestreadas a 50 Hz que indican 4 posibles estados: S1, sístole, S2 y diástole. Estas etiquetas son definidas con el *peak*-R y el final de la onda T de un electrocardiograma (ECG) sincronizado con el estetoscopio con el que se grabaron los sonidos cardiacos. Sin embargo, ninguna de las etiquetas proporcionadas poseen corrección humana.
+This dataset contains 792 audio records obtained from 135 different patients, who are auscultated in different chest positions. Each of these audio files is sampled at 1000 Hz, and has labels sampled at 50 Hz indicating 4 possible states: S1, systole, S2 and diastole. These labels are defined with the R peak and the end of the T wave of an ECG synchronised with the stethoscope used for recording the heart sounds. However, none of the labels provided have human correction.
 
-En la figura 2 es posible apreciar un ejemplo de un sonido cardiaco en conjunto con sus etiquetas.
+Figure 2 shows an example of a heart sound in conjunction with its labels.
 
 <figure>
 	<div style="text-align:center">
@@ -42,14 +42,14 @@ En la figura 2 es posible apreciar un ejemplo de un sonido cardiaco en conjunto 
 
 The folders and files that comprise this project are:
 
-* `hsp_utils`: Contiene funciones que permiten operar las funciones principales de segmentación.
-* `imgs`: Carpeta con imágenes que se incluyen en este `README`.
-* `jupyter_test`: Contiene el archivo `testing_notebook.ipynb` que permite realizar experimentos del modelo entrenado sobre los archivos disponibles en la carpeta `samples_test`.
-* `models`: Contiene el modelo final entrenado en formato `.h5`.
-* `samples_test`: Contiene una pequeña muestra de la base de datos presentada en la [sección 2](#2-base-de-datos).
-* `training_scripts`: Contiene algunos de los archivos utilizados para el entrenamiento de las redes. Sin embargo, no se asegura el correcto funcionamiento de estos archivos. Se incluyen simplemente para tener una noción de cómo se implementó este proyecto. Para más detalles se recomienda revisar en el repositorio [`Scripts_magister`](https://github.com/cmescobar/Scripts_Magister) la carpeta [`Heart_sound_segmentation_v2`](https://github.com/cmescobar/Scripts_Magister/tree/master/Heart_sound_segmentation_v2) para ver el historial de cambios sobre este experimento (:warning:**Se advierte de manera previa que esa carpeta corresponde a una etapa experimental/borrador del trabajo realizado, y por ende, no se encuentra ordenada ni es apta para utilizar directamente los códigos. En caso de estar interesado en más detalle aún, se sugiere contactar a mi correo personal**:warning:).
-* `main.py`: Archivo que contiene un ejemplo de ejecución para la función que realiza la predicción de los instantes de ocurrencia de los sonidos cardiacos.
-* `prediction_functions.py`: Archivo que contiene las funciones que permiten aplicar la predicción de las posiciones de los sonidos cardiacos utilizando la red CNN con arquitectura *encoder-decoder*.
+* `hsp_utils`: Contains functions to operate the main segmentation functions.
+* `imgs`: Folder with images included in this `README`.
+* `jupyter_test`: Contains the }`testing_notebook.ipynb` file that allows to perform experiments of the presented model on the files available in the `samples_test` folder.
+* `models`: Contains the trained Convolutional Neural Network (CNN) for the heart sound segmenation in `.h5` format.
+* `samples_test`: Contains a small sample of the dataset presented in [section 2](#2-base-de-datos).
+* `training_scripts`: It contains some of the files used for network training. However, the correct functioning of these files is not assured. They are included simply to get an idea of how this project was implemented. For more details, it is recommended to check the `Heart_sound_segmentation_v2` folder in the [`Scripts_magister`](https://github.com/cmescobar/Scripts_Magister) repository for the history of changes to this experiment ( :warning:**Please note that this folder belongs to an experimental/draft stage of the work done, and therefore, it is not ordered nor is it suitable for direct use of the codes. In case you are interested in more details, please contact my personal email address**:warning:).
+* `main.py`: File containing an runtime example for the function that performs the prediction of heartbeat occurrence instants.
+* `prediction_functions.py`: File containing the functions to implement the prediction of heart sound positions using the CNN network with semantic segmentation architecture.
 
 ## 4. Requirements
 
@@ -63,11 +63,11 @@ For the development of these modules the following list of libraries were used. 
 * [PyWavelets](https://pywavelets.readthedocs.io/en/latest/) (1.0.3)
 * [PyEMD](https://pyemd.readthedocs.io/en/latest/intro.html) (0.2.10)
 
-## 5. Ejemplo de prueba
+## 5. Coding example
 
-An example is provided in the notebook located at jupyter_test/testing_notebook.ipynb, which contains a guided execution of the prediction function.
+An example is provided in the notebook located at `jupyter_test/testing_notebook.ipynb`, which contains a guided execution of the prediction function.
 
-The following code is similar to that available in the main.py file.
+The following code is similar to that available in the `main.py` file.
 
 ```python
 import numpy as np
