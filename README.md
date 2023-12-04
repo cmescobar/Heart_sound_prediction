@@ -1,27 +1,29 @@
-# Predicción de sonidos cardiacos
+# Heart sound segmentation
 
-Este repositorio contiene los códigos utilizados para el desarrollo de un sistema de predicción de sonidos cardiacos mediante redes neuronales convolucionales (CNN). Este modelo permite predecir los instantes de ocurrencia del primer sonido cardiaco (S1) y el segundo sonido cardiaco (S2), a partir de los cuales se puede inferir los intervalos sistólicos y diastólicos.
+This repository contains the codes used for the development of a heart sound prediction system from phonocardiograms (PCG) using Convoloutional Neural Networks (CNN). This model allows prediction of the time of occurence of the first heart sound (S1) and the second heart sound (S2), from which the systolic and diastolic intervals can be inferred.
 
-El desarrollo de este proyecto se realizó en el contexto de mi investigación de Magíster en Ciencias de la Ingeniería titulada "[*Design of a preprocessing system for sounds obtained from chest auscultation*](https://repositorio.uc.cl/handle/11534/60994)" en la Pontificia Universidad Católica de Chile.
+The development of this project was performed in the context of my Master of Engineering Sciences research entitled "[*Design of a preprocessing system for sounds obtained from chest auscultation*](https://repositorio.uc.cl/handle/11534/60994)" at Pontificia Universidad Catolica de Chile, which derived in the paper entitled "Study of hyperparameters in the semantic segmentation of heart sounds".
 
-## 1. Background teórico
+## 1. Theoretical background
 
-El fonocardiograma (PCG) corresponde a la grabación de las ondas acústicas producidas por las aperturas y cierres de las válvulas cardiacas. Los componentes principales del PCG son el primer sonido cardiaco (S1) y el segundo sonido cardiaco (S2). 
+The phonocardiogram (PCG) is a recording of the heart sounds produced by the opening and closing of the heart valves. The main components of the PCG are the first heart sound (S1) and the second heart sound (S2).
 
-S1 es generado durante el sístole ventricular (cierre de las válvulas atrioventriculares: mitral/bicúspide y tricúspide), en el cual los ventrículos se contraen y permiten que la sangre sea bombeada desde el corazón hacia el resto del cuerpo a través de las arterias aorta y pulmonar. S2 ocurre durante la diástole ventricular (cierre de las válvulas sigmoideas/semilunares: aórtica y pulmonar) en el cual los ventrículos se relajan y permiten el ingreso de la sangre desde los atrios. En comparación, S1 es un sonido de menor tono con mayor duración, mientras que S2 es un sonido de mayor tono con menor duración.
+S1 is generated during ventricular systole (closure of the atrioventricular valves: mitral/bicuspid and tricuspid), in which the ventricles contract and
+allow blood to be pumped from the heart to the rest of the body through the aorta and pulmonary arteries. S2 occurs during ventricular diastole (closure of the sigmoid/semilunar valves: aortic and pulmonary) in which the ventricles relax and allow blood to flow in from the atria. In comparison, S1 is a lower-pitched sound of longer duration, while S2 is a higher-pitched sound of shorter duration. 
 
-En este trabajo, se utilizan redes neuronales convolucionales (CNN) para detectar la presencia de los sonidos cardiacos fundamentales. Una de las ventajas que presentan las CNN es que permite lograr independencia de las relaciones temporales de la señal, ya que cada capa convolucional puede entenderse como un filtro que se ajusta para detectar los segmentos de interés dentro del sonido cardiaco. Se propone el estudio de una CNN basada en una arquitectura *encoder-decoder*, inspirada en la red [SegNet](https://arxiv.org/abs/1511.00561) (ver figura 1).
+In this work, CNNs are used to detect the presence of fundamental heart sounds. One of the advantages of this type of the networks is that they allow independence of the temporal relationships of the signal. Each convolutional layer can be understood as a filter that is adjusted to detect the segments of interest within the heart sound. A semantic segmentation architecture based on the [SegNet](https://arxiv.org/abs/1511.00561) network is proposed (see figure 1).
 
 <figure>
 	<div style="text-align:center">
 		<img src="imgs/CNN_architectures-SegNet_SPA.png" width="100%">
     </div>
-	<figcaption align = "center"><b>Figura 1: Encoder-Decoder CNN basado en SegNet.</b></figcaption>
+	<figcaption align = "center"><b>Figure 1: Semantic Segmentation CNN.</b></figcaption>
 </figure>
 
-A partir de los resultados de este estudio se define la arquitectura disponible en la carpeta `models` para abordar el problema de la segmentación de los sonidos cardiacos (para más detalle sobre las conclusiones de este trabajo, se recomienda revisar el capítulo 2 de la tesis "[*Design of a preprocessing system for sounds obtained from chest auscultation*](https://repositorio.uc.cl/handle/11534/60994)").
+Based on the results of this study, the architecture available in the `models` folder is defined to address the problem of heart sound segmentation (for more details on the findings of this work, please refer to chapter 2 of the thesis "[*Design of a preprocessing system for sounds obtained from chest auscultation*](https://repositorio.uc.cl/handle/11534/60994)".
 
-## 2. Base de datos
+
+## 2. Database
 
 Para el entrenamiento de este sistema, se utilizó una base de datos de sonidos cardiacos disponible en la implementación de Springer titulada "[Logistic Regression-HSMM-based Heart Sound Segmentation](https://physionet.org/content/hss/1.0/)", la cual fue presentada para la etapa de segmentación de sonidos cardiacos en el contexto del desafío PhysioNet/CinC del año 2016. 
 
@@ -33,12 +35,12 @@ En la figura 2 es posible apreciar un ejemplo de un sonido cardiaco en conjunto 
 	<div style="text-align:center">
 		<img src="imgs/Database_sound_and_labels.png" width="70%">
     </div>
-	<figcaption align = "center"><b>Figura 2: Sonidos cardiacos y etiquetas proporcionadas.</b></figcaption>
+	<figcaption align = "center"><b>Figure 2: Heart sounds and their labels.</b></figcaption>
 </figure>
 
-## 3. Contenido del repositorio
+## 3. Repository contents
 
-Las carpetas que componen este proyecto son:
+The folders and files that comprise this project are:
 
 * `hsp_utils`: Contiene funciones que permiten operar las funciones principales de segmentación.
 * `imgs`: Carpeta con imágenes que se incluyen en este `README`.
@@ -49,9 +51,9 @@ Las carpetas que componen este proyecto son:
 * `main.py`: Archivo que contiene un ejemplo de ejecución para la función que realiza la predicción de los instantes de ocurrencia de los sonidos cardiacos.
 * `prediction_functions.py`: Archivo que contiene las funciones que permiten aplicar la predicción de las posiciones de los sonidos cardiacos utilizando la red CNN con arquitectura *encoder-decoder*.
 
-## 4. Bibliotecas requeridas
+## 4. Requirements
 
-Para el desarrollo de estos módulos se utilizó la siguiente lista de bibliotecas. Debido a que no se puede asegurar el correcto funcionamiento del repositorio para versiones posteriores de estas bibliotecas, se incorporará también la versión de cada una.
+For the development of these modules the following list of libraries were used. Since the correct functioning of the repository cannot be ensured for later versions of these libraries, the version of each library will also be incorporated. This implementation was developed using Python 3.7.
 
 * [NumPy](https://numpy.org/) (1.18.4)
 * [SciPy](https://scipy.org/) (1.5.4)
@@ -63,9 +65,9 @@ Para el desarrollo de estos módulos se utilizó la siguiente lista de bibliotec
 
 ## 5. Ejemplo de prueba
 
-Un ejemplo de prueba se deja a disposición en el *notebook* de la dirección `jupyter_test/testing_notebook.ipynb`, el cual contiene una ejecución guiada de la función de predicción.
+An example is provided in the notebook located at jupyter_test/testing_notebook.ipynb, which contains a guided execution of the prediction function.
 
-Se deja a continuación un código similar al disponible en el archivo `main.py`.
+The following code is similar to that available in the main.py file.
 
 ```python
 import numpy as np
@@ -74,17 +76,17 @@ import matplotlib.pyplot as plt
 from scipy.io import loadmat
 from prediction_functions import hss_segmentation
 
-# Parámetros
+# Parameters
 lowpass_params = {'freq_pass': 140, 'freq_stop': 150}
 model_name = 'definitive_segnet_based'
 db_folder = 'samples_test'
 
-# Abriendo audio de ejemplo
+# Opening an audio sample
 filename = 'samples_test/435_Patient081_Dis1'
 audio, samplerate = sf.read(f'{filename}.wav')
 labels = loadmat(f'{filename}.mat')['PCG_states']
 
-# Obteniendo la salida de la red
+# Getting the outputs of the network
 _, y_hat_to, (y_out2, y_out3, y_out4) = \
         hss_segmentation(audio, samplerate, model_name,
         length_desired=len(audio),
