@@ -45,7 +45,7 @@ The folders and files that comprise this project are:
 * `hsp_utils`: Contains functions to operate the main segmentation functions.
 * `imgs`: Folder with images included in this `README`.
 * `jupyter_test`: Contains the }`testing_notebook.ipynb` file that allows to perform experiments of the presented model on the files available in the `samples_test` folder.
-* `models`: Contains the trained Convolutional Neural Network (CNN) for the heart sound segmenation in `.h5` format.
+* `models`: Contains the trained Convolutional Neural Network (CNN) for the heart sound segmentation in `.h5` format.
 * `samples_test`: Contains a small sample of the dataset presented in [section 2](#2-base-de-datos).
 * `training_scripts`: It contains some of the files used for network training. However, the correct functioning of these files is not assured. They are included simply to get an idea of how this project was implemented. For more details, it is recommended to check the `Heart_sound_segmentation_v2` folder in the [`Scripts_magister`](https://github.com/cmescobar/Scripts_Magister) repository for the history of changes to this experiment ( :warning:**Please note that this folder belongs to an experimental/draft stage of the work done, and therefore, it is not ordered nor is it suitable for direct use of the codes. In case you are interested in more details, please contact my personal email address**:warning:).
 * `main.py`: File containing an runtime example for the function that performs the prediction of heartbeat occurrence instants.
